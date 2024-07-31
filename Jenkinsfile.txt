@@ -2,30 +2,36 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven' // Ensure Maven is installed on Jenkins
+        maven 'Maven' // Ensure Maven is configured in Jenkins global tool configuration
+        jdk 'JAVA17'  // Ensure JDK is configured in Jenkins global tool configuration
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/Uwaisnagarro/Assignment5-6.git', branch: 'main'
+                git branch: 'main', url: 'https://github.com/Uwaisnagarro/Assignment5-6.git'
             }
         }
+
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test'
             }
         }
     }
+
     post {
         success {
-            echo 'Build Successful'
+            echo 'Pipeline succeeded!'
         }
         failure {
-            echo 'Build Failed'
-        }
-        always {
-            cleanWs()
+            echo 'Pipeline failed!'
         }
     }
 }
