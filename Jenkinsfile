@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        githubPush()   // it's for push
+        githubPush()   // it's for push again
     }
 
     tools {
