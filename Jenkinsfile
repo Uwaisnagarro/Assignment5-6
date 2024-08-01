@@ -10,18 +10,10 @@ pipeline {
         jdk 'JAVA17'  // Ensure JDK is configured in Jenkins global tool configuration
     }
 
-    scm {
-        git {
-            url 'https://github.com/Uwaisnagarro/Assignment5-6.git'
-            branch 'main'
-            credentialsId '3eb0db10-6140-428f-ab00-adabc3d05a47' // Replace with your credentials ID
-        }
-    }
-
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Uwaisnagarro/Assignment5-6.git'
+                git branch: 'main', url: 'https://github.com/Uwaisnagarro/Assignment5-6.git', credentialsId: '3eb0db10-6140-428f-ab00-adabc3d05a47'
             }
         }
 
