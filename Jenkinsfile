@@ -25,9 +25,12 @@ pipeline {
             }
         }
 
-        stage('Start Application') {
+        stage('Run') {
             steps {
-                bat 'start cmd /c "mvn spring-boot:run"'
+                script {
+                    // Run the application in the background
+                    bat 'start /B java -jar target/Assignment5-0.0.1-SNAPSHOT.jar'
+                }
             }
         }
     }
