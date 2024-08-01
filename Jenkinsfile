@@ -24,6 +24,12 @@ pipeline {
                 bat 'mvn test'
             }
         }
+
+        stage('Start Application') {
+            steps {
+                bat 'start cmd /c "mvn spring-boot:run"'
+            }
+        }
     }
 
     post {
