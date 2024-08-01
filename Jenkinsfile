@@ -28,9 +28,16 @@ pipeline {
         stage('Run') {
             steps {
                 script {
-                    // Run the application in the background
-                    bat 'java -jar target/Assignment5-0.0.1-SNAPSHOT.jar'
-                }
+                            // Run the application in the background
+                    async {
+                             bat 'java -jar target/Assignment5-0.0.1-SNAPSHOT.jar'
+                          }
+                             // Wait for a short period to ensure the app starts
+                              sleep 10
+                               // Exit the pipeline, allowing the app to continue running
+                                currentBuild.result = 'SUCCESS'
+                                   return
+                                }
             }
         }
     }
